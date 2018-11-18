@@ -7,19 +7,9 @@
 
 package org.usfirst.frc.team2399.robot;
 
-import org.usfirst.frc.team2399.robot.commands.Arm;
-import org.usfirst.frc.team2399.robot.commands.Disarm;
-import org.usfirst.frc.team2399.robot.commands.Extend;
-import org.usfirst.frc.team2399.robot.commands.Retract;
-import org.usfirst.frc.team2399.robot.commands.SpinIn;
-import org.usfirst.frc.team2399.robot.commands.SpinOut;
 import org.usfirst.frc.team2399.robot.subsystems.Drivetrain;
-import org.usfirst.frc.team2399.robot.subsystems.Intake;
-import org.usfirst.frc.team2399.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -56,32 +46,7 @@ public class OI {
 	
 	Joystick xBox = new Joystick(0);
 	
-	Button button1;
-	Button button2;
-	Button button3;
-	Button button4;
-	Button button5;
-	Button button6;
-	
-	public OI(Drivetrain dt, Shooter sh, Intake in){
-		
-		button1 = new JoystickButton(xBox, 1);
-		button2 = new JoystickButton(xBox, 2);
-		button3 = new JoystickButton(xBox, 3);
-		button4 = new JoystickButton(xBox, 4);
-		button5 = new JoystickButton(xBox, 5);
-		button6 = new JoystickButton(xBox, 6);
-		
-		//intake
-		button1.whileHeld(new SpinIn(in));
-		button2.whileHeld(new SpinOut(in));
-		button3.whenPressed(new Extend(in));
-		button4.whenPressed(new Retract(in));
-		
-		//shooter
-		button5.whenPressed(new Arm(sh));
-		button6.whenPressed(new Disarm(sh));
-		
+	public OI(Drivetrain dt){		
 	}
 	
 	public double getLeftStickX() {

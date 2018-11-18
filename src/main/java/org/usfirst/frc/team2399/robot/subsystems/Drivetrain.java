@@ -21,29 +21,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 	
-	TalonSRX leftFront, rightFront;
-	VictorSPX leftMiddle, leftBack, rightMiddle, rightBack;
+	TalonSRX leftSide, rightSide;
 
 	public Drivetrain() {
-		leftFront = new TalonSRX(14);
-		leftMiddle = new VictorSPX(13);
-		leftBack = new VictorSPX(15);
-		rightFront = new TalonSRX(21);
-		rightMiddle = new VictorSPX(20);
-		rightBack = new VictorSPX(22);	
-		
-		leftMiddle.follow(leftFront);
-		leftBack.follow(leftFront);
-		rightMiddle.follow(rightFront);
-		rightBack.follow(rightFront);
+		leftSide = new TalonSRX(3);
+		rightSide = new TalonSRX(7);
 	}
 	
 	public void tankDrive(double left, double right) {
 		double leftSpeed = left * RobotMap.LEFT_FORWARD;
 		double rightSpeed = right * RobotMap.RIGHT_FORWARD;
 		
-		leftFront.set(ControlMode.PercentOutput, leftSpeed);
-		rightFront.set(ControlMode.PercentOutput, rightSpeed);
+		leftSide.set(ControlMode.PercentOutput, leftSpeed);
+		rightSide.set(ControlMode.PercentOutput, rightSpeed);
 	}
 	
 	public void initDefaultCommand(Command c) {

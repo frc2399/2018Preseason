@@ -13,11 +13,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team2399.robot.commands.IntakeDoNothing;
 import org.usfirst.frc.team2399.robot.commands.TankDrive;
 import org.usfirst.frc.team2399.robot.subsystems.Drivetrain;
-import org.usfirst.frc.team2399.robot.subsystems.Intake;
-import org.usfirst.frc.team2399.robot.subsystems.Shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,8 +28,6 @@ public class Robot extends TimedRobot {
 	//this exists on the robot
 	OI oi;
 	Drivetrain dt;
-	Intake in;
-	Shooter sh;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -41,13 +36,9 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		dt = new Drivetrain();
-		in = new Intake();
-		sh = new Shooter();
-		oi = new OI(dt, sh, in);
+		oi = new OI(dt);
 		
 		dt.initDefaultCommand(new TankDrive(dt, oi));
-		in.initDefaultCommand(new IntakeDoNothing(in));
-	//	sh.initDefaultCommand(new)
 	}
 
 	/**
