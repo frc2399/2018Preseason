@@ -11,7 +11,6 @@ import org.usfirst.frc.team2399.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -24,16 +23,18 @@ public class Drivetrain extends Subsystem {
 	TalonSRX leftSide, rightSide;
 
 	public Drivetrain() {
-		leftSide = new TalonSRX(3);
-		rightSide = new TalonSRX(7);
+		leftSide = new TalonSRX(7);
+		rightSide = new TalonSRX(3);
 	}
 	
-	public void tankDrive(double left, double right) {
-		double leftSpeed = left * RobotMap.LEFT_FORWARD;
-		double rightSpeed = right * RobotMap.RIGHT_FORWARD;
+	public void drivePercent(double leftPercent, double rightPercent) {
 		
-		leftSide.set(ControlMode.PercentOutput, leftSpeed);
-		rightSide.set(ControlMode.PercentOutput, rightSpeed);
+		double leftPercentForward = leftPercent * RobotMap.LEFT_FORWARD;
+		double rightPercentForward = rightPercent * RobotMap.RIGHT_FORWARD;
+		
+		leftSide.set(ControlMode.PercentOutput, leftPercentForward);
+		rightSide.set(ControlMode.PercentOutput, rightPercentForward);
+	
 	}
 	
 	public void initDefaultCommand(Command c) {

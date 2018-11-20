@@ -15,11 +15,11 @@ import org.usfirst.frc.team2399.robot.subsystems.Drivetrain;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class TankDrive extends Command {
+public class KajDrive extends Command {
 	Drivetrain dt;
 	OI oi;
 	
-	public TankDrive(Drivetrain drivetrain, OI operatorInterface) {
+	public KajDrive(Drivetrain drivetrain, OI operatorInterface) {
 		dt = drivetrain;
 		oi = operatorInterface;
 		
@@ -35,7 +35,19 @@ public class TankDrive extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		dt.drivePercent(oi.getLeftStickY(), oi.getRightStickY());
+		double forward = oi.getLeftStickY();
+    	double turn = oi.getRightStickX();
+    	
+    	double leftSideSpeed = (forward + turn * (Math.abs(forward)));
+    	double rightSideSpeed = (forward - turn * (Math.abs(forward)));
+    	
+    	if(inRange(forward, 0, 0.1 * 2))
+		{
+			leftSideSpeed = turn/ 2;
+			rightSideSpeed = -turn / 2;
+		}
+    	
+    	dt.drivePercent(leftSideSpeed, rightSideSpeed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -53,5 +65,13 @@ public class TankDrive extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+	}
+	
+	public static boolean inRange(double first, double second, double tolerance)
+	{
+		double upperBound = first + tolerance;
+		double lowerBound = first - tolerance;
+		
+		return (second < upperBound) && (second > lowerBound);
 	}
 }

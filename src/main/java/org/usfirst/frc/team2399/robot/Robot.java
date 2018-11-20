@@ -8,12 +8,9 @@
 package org.usfirst.frc.team2399.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team2399.robot.commands.TankDrive;
+import org.usfirst.frc.team2399.robot.commands.KajDrive;
 import org.usfirst.frc.team2399.robot.subsystems.Drivetrain;
 
 /**
@@ -38,7 +35,7 @@ public class Robot extends TimedRobot {
 		dt = new Drivetrain();
 		oi = new OI(dt);
 		
-		dt.initDefaultCommand(new TankDrive(dt, oi));
+		dt.initDefaultCommand(new KajDrive(dt, oi));
 	}
 
 	/**

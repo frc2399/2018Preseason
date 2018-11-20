@@ -65,6 +65,4 @@ public class OI {
 		return xBox.getRawAxis(5) * RobotMap.RIGHT_STICK_FORWARD; 
 	}
 	
-	
-	
 }
